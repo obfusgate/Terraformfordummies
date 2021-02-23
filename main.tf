@@ -15,3 +15,10 @@
 # 9. Create Windows 2019 AMI and introduce index.html
 # 10. Scaling or monitoring?
 
+# 1. create vpc
+resource "aws_vpc" "prod-vpc" {
+  cidr_block = "10.0.0.0/16"
+  tags = {
+    "Name" = "Production"
+  }
+}
