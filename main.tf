@@ -1,0 +1,17 @@
+ provider "aws" {
+   region = "us-east-1"
+   access_key = "AKIAJL3UIWWOXO6GGRFQ"
+   secret_key = "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"
+ }
+
+# 1. create vpc
+# 2. Create Internet gateway
+# 3. Create custom route table
+# 4. Create a Subnet
+# 5. Associate Subnet with route table
+# 6. Create Security Group to allow port 443, 80, 22
+# 7. Create a network interface with an ip in the subnet that was created in step 4
+# 8. Assign an Elastic IP to the network interface crteated in step 7
+# 9. Create Windows 2019 AMI and introduce index.html
+# 10. Scaling or monitoring?
+
