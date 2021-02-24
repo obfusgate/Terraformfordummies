@@ -105,3 +105,4 @@ resource "aws_security_group" "allow_web" {
     Name = "allow_web"
   }
 }
+Create Security Group to allow port 22,80,443
