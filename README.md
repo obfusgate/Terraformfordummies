@@ -11,3 +11,5 @@
 * Auto Scaling
 * A Source Controlled Development Environment
 * Your Super Cool Totally Awesome Idea Here!!!!
+
+* Try this: https://docs.aws.amazon.com/AmazonECS/latest/developerguide/docker-basics.html

@@ -42,7 +42,7 @@ resource "aws_route_table" "prod-route-table" {
     ipv6_cidr_block        = "::/0"
     gateway_id = aws_internet_gateway.gw.id
   }
-\ tags = {
+ tags = {
     Name = "prod"
   }
 }
@@ -142,9 +142,14 @@ resource "aws_instance" "web-server-instance" {
   user_data = <<-EOF
             #!/bin/bash
             sudo apt update -y
-            sudo apt install apache2 -y
-            sudo systemctl start apache2
-            sudo bash -c 'echo Hello From Filevine! > /var/www/html/index.html'
+            sudo apt-get install apt-transport-https ca-certificates curl gnupg lsb-release -y
+            curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+            echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+            sudo apt-get update -y
+            sudo apt-get install docker-ce docker-ce-cli containerd.io -y
+            sudo service docker start
+            sudo docker pull charlierlee/ethbalance
+            sudo docker run -d -p 443:443 -p 80:80 charlierlee/ethbalance
             EOF
 
  tags = {
