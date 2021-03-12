@@ -149,7 +149,8 @@ resource "aws_instance" "web-server-instance" {
             sudo apt-get install docker-ce docker-ce-cli containerd.io -y
             sudo service docker start
             sudo docker pull charlierlee/ethbalance
-            sudo docker run -d -p 443:443 -p 80:80 charlierlee/ethbalance
+            echo "${file("${path.module}/docker-compose.tpl")}" > /opt/docker-compose.yml
+            sudo docker-compose -f /opt/docker-compose.yml up -d
             EOF
 
  tags = {
